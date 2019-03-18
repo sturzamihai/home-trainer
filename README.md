@@ -6,3 +6,17 @@ I wanted to start learning React Native and I needed a good remote app to check 
 - Fetches current and relevant metrics (batch, epoch, loss, acc, etc.).
 - Displays the remote host system load.
 - *Maybe* adjusts model's params remotely.
+
+## Approach
+- Create a custom callback for Keras that extracts information from the training process (callback.py)
+  - Extract acc,loss per batch and output them after finishing an epoch
+  - Outputs a JSON file that is structured like this:
+  ```
+  {
+    "epoch": int,
+    "loss": float,
+    "acc": float,
+    "prog_loss": list<float>,
+    "prog_acc": list<float>
+  }
+  ```
