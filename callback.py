@@ -17,9 +17,9 @@ class HomeTrainer(keras.callbacks.Callback):
     self.epoch_loss.append(logs.get('loss'))
     self.epoch_acc.append(logs.get('acc'))
     
-  def update_app(self, epoch):
-    with open('metrics.txt','a') as f:
-      f.write(json.dumps(epoch))
+  def update_app(self):
+    with open('metrics.json','w') as f:
+      json.dump(self.metrics,f)
       
   def on_epoch_end(self, epoch, logs={}):
       epoch = {
@@ -32,7 +32,7 @@ class HomeTrainer(keras.callbacks.Callback):
       self.epoch_loss = list()
       self.epoch_acc = list()
       self.metrics.append(epoch)
-      self.update_app(epoch)
+      self.update_app()
 
 def model_compile(model,optimizer,loss):
   model.compile(optimizer=optimizer,loss=loss,metrics=['acc'])
