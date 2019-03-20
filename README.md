@@ -20,3 +20,9 @@ I wanted to start learning React Native and I needed a good remote app to check 
     "prog_acc": list<float>
   }
   ```
+- Create an API for sending data from the model
+  - The API calls will be made by the mobile app
+  - The following routes are available:
+  ```
+  GET /app/get - returns a JSON that contains CPU/Memory load and training progress (acc, loss, batch_loss, batch_acc)
+  ```
