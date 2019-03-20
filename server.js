@@ -14,8 +14,8 @@ function getSysInfo() {
             name: cpus[0].model
         },
         memory: {
-            total: totalMem/Math.pow(1024,3),
-            free: freeMem/Math.pow(1024,3)
+            total: totalMem,
+            free: freeMem
         }
     };
     return sysInfo;
@@ -27,7 +27,10 @@ function getModelInfo(data) {
 }
 
 app.get('/app/get', (req,res) => {
-    res.send([getSysInfo(),getModelInfo()]);
+    res.send({
+        sys: getSysInfo(),
+        model: getModelInfo()
+    });
 });
 
 let port = process.env.PORT || 3000;
