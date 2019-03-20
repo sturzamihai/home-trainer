@@ -26,3 +26,7 @@ I wanted to start learning React Native and I needed a good remote app to check 
   ```
   GET /app/get - returns a JSON that contains CPU/Memory load and training progress (acc, loss, batch_loss, batch_acc)
   ```
+- Create the actual app for getting the info about the model
+  - Show relevant data in the app
+  - *Maybe* change model params on the go
+  - I still have a lot to learn on react native so it will take some time :)
