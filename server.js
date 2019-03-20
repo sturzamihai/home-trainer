@@ -22,7 +22,7 @@ function getSysInfo() {
 }
 
 function getModelInfo(data) {
-    var modelData = JSON.parse(fs.readFileSync('metrics.json'));
+    let modelData = JSON.parse(fs.readFileSync('metrics.json'));
     return modelData;
 }
 
