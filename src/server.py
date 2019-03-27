@@ -20,7 +20,7 @@ def get_specs():
     return specs
 
 def get_metrics():
-    with open('metrics.json') as f:
+    with open('../metrics.json') as f:
         obj = json.loads(f.read())
     
     return obj
