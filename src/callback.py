@@ -38,6 +38,7 @@ def model_compile(model,optimizer,loss):
   model.compile(optimizer=optimizer,loss=loss,metrics=['acc'])
   return model
 
+"""
 # Sample Model
 
 (x_train, y_train), (x_test, y_test) = keras.datasets.mnist.load_data()
@@ -66,3 +67,4 @@ model.summary()
 model = model_compile(model,"adam","categorical_crossentropy")
 
 model.fit(x_train, y_train, batch_size=64, epochs=2, callbacks=[HomeTrainer()])
+"""
