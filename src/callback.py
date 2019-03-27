@@ -26,8 +26,8 @@ class HomeTrainer(keras.callbacks.Callback):
           'epoch': len(self.metrics)+1,
           'loss': logs.get('loss'),
           'acc': logs.get('acc'),
-          'loss_prog': str(self.epoch_loss),
-          'acc_prog': str(self.epoch_acc),
+          'loss_prog': [float(i) for i in self.epoch_loss],
+          'acc_prog': [float(i) for i in self.epoch_acc],
       }
       self.epoch_loss = list()
       self.epoch_acc = list()

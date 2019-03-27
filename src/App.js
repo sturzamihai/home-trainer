@@ -26,24 +26,32 @@ export default class HomeTrainer extends Component {
     else return [data/1024,'KB'];
   }
 
-  _getAccDataForPlotting = () => {
+  _getAccBatchesPlotting = () => {
     let acc_prog = [];
-    this.state.modelData.forEach((elem) => {
-      elem.acc_prog.split(", ").forEach(val => {
-        acc_prog.push(parseFloat(val));
-      })
+    this.state.modelData.forEach(elem => {
+      elem.acc_prog.forEach(val=>acc_prog.push(val));
     });
     return acc_prog;
   }
 
-  _getLossDataForPlotting = () => {
+  _getLossBatchesPlotting = () => {
     let loss_prog = [];
     this.state.modelData.forEach((elem) => {
-      elem.loss_prog.split(", ").forEach(val => {
-        loss_prog.push(parseFloat(val));
-      })
+      elem.loss_prog.forEach(val=>loss_prog.push(val))
     });
     return loss_prog;
+  }
+
+  _getAccEpochsPlotting = () => {
+    let acc = [];
+    this.state.modelData.forEach((elem) => acc.push(elem.acc));
+    return acc;
+  }
+
+  _getLossEpochsPlotting = () => {
+    let loss = [];
+    this.state.modelData.forEach((elem) => loss.push(elem.loss));
+    return loss;
   }
   
   componentDidMount() {
@@ -60,21 +68,31 @@ export default class HomeTrainer extends Component {
           data={this.state.sysData}
           renderItem={({item})=> <Text>{item.cpu.num}x{item.cpu.name}{'\n'}{Math.round(this._convertToRelevantSize(item.memory.free)[0])} {this._convertToRelevantSize(item.memory.free)[1]} free of {Math.round(this._convertToRelevantSize(item.memory.total)[0])} {this._convertToRelevantSize(item.memory.total)[1]} </Text>}
         />
-        <TouchableOpacity onPress={this._getAppData}><Text>Refresh</Text></TouchableOpacity>
         <LineChart
-                style={{ height: 200 }}
-                data={ this._getAccDataForPlotting() }
-                svg={{ stroke: 'rgb(134, 65, 244)' }}
-                contentInset={{ top: 20, bottom: 20 }}
+                style={{height:100}}
+                data={ this._getAccBatchesPlotting() }
+                svg={{ stroke: 'rgb(255, 0, 0)' }}
         >
         </LineChart>
         <LineChart
-                style={{ height: 200 }}
-                data={ this._getLossDataForPlotting() }
-                svg={{ stroke: 'rgb(134, 65, 244)' }}
-                contentInset={{ top: 20, bottom: 20 }}
+                style={{height:100}}
+                data={ this._getLossBatchesPlotting() }
+                svg={{ stroke: 'rgb(0, 255, 0)' }}
         >
         </LineChart>
+        <LineChart
+                style={{height:100}}
+                data={ this._getAccEpochsPlotting() }
+                svg={{ stroke: 'rgb(255, 0, 0)' }}
+        >
+        </LineChart>
+        <LineChart
+                style={{height:100}}
+                data={ this._getLossEpochsPlotting() }
+                svg={{ stroke: 'rgb(0, 255, 0)' }}
+        >
+        </LineChart>
+        <TouchableOpacity style={style.button} onPress={this._getAppData}><Text>Refresh</Text></TouchableOpacity>
       </View>
     );
   }
@@ -83,5 +101,9 @@ export default class HomeTrainer extends Component {
 const style = StyleSheet.create({
   container: {
     paddingTop:100
+  },
+  button: {
+    padding:15,
+    backgroundColor: 'lightblue'
   }
 });
