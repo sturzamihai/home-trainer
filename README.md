@@ -25,8 +25,12 @@ I wanted to start learning React Native and I needed a good remote app to check 
   - The following routes are available:
   ```
   GET /app/get - returns a JSON that contains CPU/Memory load and training progress (acc, loss, batch_loss, batch_acc)
+  soon POST /app/train - expects a body containg a JSON for model parameters
   ```
 - Create the actual app for getting the info about the model
   - Show relevant data in the app
-  - *Maybe* change model params on the go
+  - Change model params on the go
   - I still have a lot to learn on react native so it will take some time :)
+  
+  ## Architecture
+  ![](https://raw.githubusercontent.com/sturzamihai/home-trainer/master/architecture.png)
